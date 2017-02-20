@@ -1,0 +1,80 @@
+<h1>This is the bag show page</h1>
+
+<div class="cover-container">
+  <div class="container">
+    <div class="cover">
+
+
+
+
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-2 col-md-8">
+
+      <p>
+      <strong><%= @bag.name %></strong>
+      </p>
+
+      <p>
+        <strong><%= @bag.address %></strong>
+      </p>
+
+      <p>
+        <strong>Description:</strong>
+        <%= @bag.description %>
+      </p>
+
+      <div class="booking-form">
+        <% if @bag.errors.any? %>
+        <ul>
+          <% @bag.errors.full_messages.each do |error| %>
+            <li><%= error %></li>
+          <% end %>
+        </ul>
+        <% end %>
+
+        <%= simple_form_for(@bag) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <%= f.input :checkin %>
+          <%= f.input :checkout %>
+          <%= f.input :description %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit %>
+        </div>
+        <% end %>
+      </div>
+
+
+
+
+      <div class="reviews-list">
+        <p>
+          <strong>Stars:</strong>
+          <ul>
+            <% @bag.stars.each do |star| %>
+            <li><%= star.content %></li>
+            <% end %>
+          </ul>
+        </p>
+
+        <p>
+          <strong>Reviews:</strong>
+          <ul>
+            <% @bag.reviews.each do |review| %>
+            <li><%= review.content %></li>
+            <% end %>
+          </ul>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
